@@ -1,0 +1,41 @@
+What is Retrieval-Augmented Generation (RAG)?
+
+Retrieval-Augmented Generation (RAG) is a technique that combines information retrieval with text generation. Instead of relying solely on what a language model learned during training, RAG fetches relevant documents from an external knowledge base and uses them as context for generating answers.
+
+Why RAG Matters
+
+Large language models are powerful but have limitations. They can hallucinate facts, their training data has a cutoff date, and they don't have access to private or proprietary information. RAG solves these problems by grounding the model's responses in actual retrieved documents.
+
+How RAG Works
+
+The RAG pipeline has two main phases:
+
+1. Indexing Phase (done once or periodically):
+   - Documents are loaded from various sources (PDFs, databases, websites)
+   - Documents are split into smaller chunks
+   - Each chunk is converted into a vector embedding (a numerical representation)
+   - Embeddings are stored in a vector database for fast similarity search
+
+2. Query Phase (done for each user question):
+   - The user's question is converted into a vector embedding
+   - The vector database finds the most similar document chunks
+   - The retrieved chunks are passed as context to the language model
+   - The model generates an answer grounded in the retrieved information
+
+Key Components
+
+Vector Embeddings: Dense numerical representations of text that capture semantic meaning. Similar texts have similar embeddings, enabling semantic search rather than just keyword matching.
+
+Vector Database: A specialized database optimized for storing and searching vector embeddings. Examples include Pinecone, Weaviate, ChromaDB, and pgvector.
+
+Text Splitter: A tool that breaks documents into smaller, manageable chunks. Good chunking preserves semantic coherence while keeping chunks small enough for precise retrieval.
+
+Language Model: The generative component that produces natural language answers using the retrieved context. Examples include Claude, GPT-4, and Llama.
+
+Benefits of RAG
+
+- Reduces hallucinations by grounding responses in real documents
+- Provides up-to-date information beyond the model's training cutoff
+- Enables access to private/proprietary knowledge bases
+- More cost-effective than fine-tuning for many use cases
+- Answers can cite sources, improving trustworthiness
